@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 from dotenv import load_dotenv
 
-load_dotenv()  # Charge les variables d'environnement
+load_dotenv()  # Charge les variables d'environnement.
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
