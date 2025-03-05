@@ -1,0 +1,148 @@
+
+/* 
+
+À l’heure où j’écris ces lignes, une erreur est présente dans la version 
+Sass de Bootstrap 5. Sur le composant   offcanvas, les   z-index  de la classe  
+ .offcanvas  et celui de la classe   .modal-backdrop  sont inversés, ce qui cache
+  le contenu de votre carrousel derrière un voile noir en   opacity: 0.5 .
+
+Pour y remédier, cherchez le fichier _offcanvas.scss dans votre dossier Bootstrap,
+ puis récupérez le nom de la variable du   z-index  de la classe   .offcanvas. Si ça ne change pas, 
+ cette variable devrait être   $zindex-offcanvas. Ajoutez-la dans votre fichier _variables_overrides.scss 
+ et donnez-lui une valeur supérieure au   z-index  de la classe  
+ .modal-backdrop, soit   1051  si ça n’a pas changé au moment où vous lisez ces lignes.
+
+
+  Solution  : Modifier la variable CSS directement (sans recompiler Bootstrap)
+Si tu ne veux pas modifier les fichiers Sass et recompiler Bootstrap, ajoute ce code dans ton fichier 
+CSS global :
+
+:root {
+  --bs-offcanvas-zindex: 1051;
+}
+Cela modifiera la valeur sans toucher au fichier source.
+et c'est ce que j'ai fait
+
+*/
+/* Définition des variables CSS */
+
+
+:root {
+    --bs-offcanvas-zindex: 1051;
+}  
+
+/* Réinitialisation du body pour occuper tout l'écran */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Conteneur du chatbot en pleine page */
+.chat-container {
+    width: 1300px;
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 20px;
+}
+
+/* Titre centré */
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/* Zone de chat en pleine hauteur */
+#chatbox {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Messages utilisateur et chatbot */
+.user-message, .bot-message {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin: 5px 0;
+    line-height: 1.4;
+    position: relative;
+    animation: slideUp 0.3s ease-in-out;
+}
+
+.user-message {
+    background: black;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.bot-message {
+    background: #e9ecef;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+/* Champ d'entrée et bouton */
+.input-group {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5294db;
+}
+
+button i {
+    font-size: 1.3rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chatbot Cybersécurité</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    {% load static %}
+    <link href="{% static 'chatbot/chatbot.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid mt-4 d-flex justify-content-center">
+        <div class="chat-container shadow-lg p-4 rounded w-100 w-md-75 w-lg-50">
+            <h2 class="text-center text-primary mb-3">Chatbot Cybersécurité</h2>
+
+            <!-- Boîte de chat -->
+            <div id="chatbox" class="border p-3 mb-3 bg-light rounded" 
+                style="height: 50vh; overflow-y: auto;">
+            </div>
+
+            <!-- Loader -->
+            <div id="loading" class="text-center mb-3 d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Zone de saisie et bouton -->
+            <div class="input-group">
+                <input type="text" id="userInput" class="form-control" 
+                    placeholder="Posez une question sur la sécurité informatique...">
+                <button class="btn btn-primary" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'chatbot/chatbot.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous"></script>
+</body>
+</html>
