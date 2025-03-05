@@ -20,5 +20,5 @@ venv/
 .idea/
 .vscode/
 
-# Secrets et fichiers sensibles
+# Secrets et fichiers sensibles .
 *.env
