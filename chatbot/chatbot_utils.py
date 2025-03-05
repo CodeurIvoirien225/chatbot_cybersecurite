@@ -48,7 +48,7 @@ cybersecurity_topics = [
     "exploit", "sécurité", "Dark Web", "rootkit", "VPN", "SSL", "SSI", "TLS", "IPS", "IDS", "sécurisation wifi",
     "SSL/TLS", "routeur", "ips", "ids", "hachage", "routeur", "switch", "serveur", "vlan", "OWASP Top 10", "chiffrement asymétrique",
     "cybersécurité", "cybersecurite", "cybersécurite", "IDS", "IPS", "SIEM", "SOC",
-    # Ajoutez d'autres sujets pertinents
+    # Ajoutez d'autres sujets pertinents.
 ]
 
 # Charger le modèle Sentence Transformer
