@@ -6,7 +6,6 @@ from django.views.decorators.http import require_POST
 from chatbot.chatbot_utils import send_message_to_gemini, FAQ_RESPONSES  # Ajout de l'import
 import re
 import unicodedata
-
 # Configuration du logger
 logger = logging.getLogger(__name__)
 
@@ -55,6 +54,7 @@ def chatbot_api(request):
     except Exception as e:
         logger.exception(f"Erreur inattendue dans la vue chatbot_api : {e}")
         return JsonResponse({"error": "Erreur interne du serveur"}, status=500)
+
 
 def index(request):
     return render(request, 'chatbot.html')
