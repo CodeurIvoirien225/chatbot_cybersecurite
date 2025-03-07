@@ -52,7 +52,7 @@ cybersecurity_topics = [
 ]
 
 # Charger le modèle Sentence Transformer
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 topic_embeddings = model.encode(cybersecurity_topics)
 
 # Liste des questions générales avec des réponses spécifiques
@@ -62,11 +62,13 @@ FAQ_RESPONSES = {
     # ... (autres questions et réponses)
 }
 
+
 def is_security_rated(question, threshold=0.4):
     """Vérifie si une question est liée à la cybersécurité en utilisant la similarité sémantique."""
     question_embedding = model.encode(question)
     similarities = util.cos_sim(question_embedding, topic_embeddings)[0]
     return any(similarity > threshold for similarity in similarities)
+
 
 def send_message_to_gemini(user_message):
     """Envoie un message à Gemini en utilisant la similarité sémantique."""
