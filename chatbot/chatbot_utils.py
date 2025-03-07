@@ -63,11 +63,12 @@ FAQ_RESPONSES = {
 }
 
 
-def is_security_rated(question, threshold=0.4):
-    """Vérifie si une question est liée à la cybersécurité en utilisant la similarité sémantique."""
+def is_security_rated(question, threshold=0.5):
+    """Vérifie si une question est liée à la cybersécurité en retournant la meilleure similarité trouvée."""
     question_embedding = model.encode(question)
     similarities = util.cos_sim(question_embedding, topic_embeddings)[0]
-    return any(similarity > threshold for similarity in similarities)
+    max_similarity = max(similarities)
+    return max_similarity > threshold
 
 
 def send_message_to_gemini(user_message):
