@@ -1,1 +1,1 @@
-web: python chatbot_utils.py
+web: gunicorn chatbot_project.wsgi
