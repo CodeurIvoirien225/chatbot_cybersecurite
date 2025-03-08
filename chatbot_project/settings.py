@@ -32,7 +32,9 @@ SECRET_KEY = 'django-insecure-u$h3j5$0_@r--xig3-g0eb)5srmo=eu#)(8^+*jop%#5#izq$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "chatbot-cybersecurite-uisn.onrender.com"
+]
 
 
 # Application definition
@@ -88,6 +90,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
