@@ -26,6 +26,7 @@ google-generativeai
 googleapis-common-protos
 grpcio
 grpcio-status
+gunicorn
 h11
 httpcore
 httplib2
@@ -82,4 +83,3 @@ tzdata
 uritemplate
 urllib3
 yarl
-psycopggunicorn
