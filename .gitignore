@@ -22,3 +22,5 @@ venv/
 
 # Secrets et fichiers sensibles .
 *.env
+=3.7,
+=3.8,
