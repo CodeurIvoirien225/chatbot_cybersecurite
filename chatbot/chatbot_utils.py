@@ -2,22 +2,29 @@ import google.generativeai as genai
 import os
 import logging
 import time
+import textwrap
 from google.api_core.exceptions import GoogleAPIError
-from sentence_transformers import SentenceTransformer, util
 
 # Configuration du logger
 logger = logging.getLogger(__name__)
 
-# Configurer la clé API Gemini
+# Charger la clé API
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     logger.error("Clé API Google non définie.")
-else:
-    genai.configure(api_key=api_key)
-    logger.info("Clé API Google configurée avec succès.")
+    raise ValueError("Clé API manquante.")
+
+genai.configure(api_key=api_key)
+logger.info("Clé API Google configurée avec succès.")
 
 # Liste des sujets de cybersécurité
-cybersecurity_topics = [
+cybersecurity_topics = list(set([
+    "sécurité des réseaux Wi-Fi", "attaques par déni de service (DDoS)", "injection SQL",
+    "botnets", "chiffrement des données", "protection contre les malwares", "sécurité réseau",
+    "firewall", "pentest", "malware", "phishing", "ransomware", "cryptographie",
+    "hacking", "piratage", "vulnérabilités", "forensics", "cyberattaque",
+    "cyberdéfense", "ingénierie sociale", "sécurité cloud", "sécurité IoT", "VPN", "SSL", "TLS",
+    "sécurité des bases de données", "authentification multi-facteurs", "MITM (Man-In-The-Middle)",
     "sécurité des réseaux Wi-Fi", "attaques par déni de service (DDoS)", "injection SQL",
     "botnets", "failles zero-day", "chiffrement des données", "protection contre les malwares",
     "sécurité des mots de passe", "authentification multi-facteurs", "pare-feu", "réseau",
@@ -47,35 +54,27 @@ cybersecurity_topics = [
     "logiciel malveillant", "faille de sécurité", "pirate informatique", "sécurité des réseaux sans fil", "sécurité des systèmes embarqués", 
     "exploit", "sécurité", "Dark Web", "rootkit", "VPN", "SSL", "SSI", "TLS", "IPS", "IDS", "sécurisation wifi",
     "SSL/TLS", "routeur", "ips", "ids", "hachage", "routeur", "switch", "serveur", "vlan", "OWASP Top 10", "chiffrement asymétrique",
-    "cybersécurité", "cybersecurite", "cybersécurite", "IDS", "IPS", "SIEM", "SOC",
+    "cybersécurité", "cybersecurite", "cybersécurite", "IDS", "IPS", "SIEM", "SOC", "hachage", "hach", "cia", "CIA", 'cid', "CID",
+    "confidentialité", "confidentialite", "intégrité", "disponibilité", "integrite", "disponibilite",
     # Ajoutez d'autres sujets pertinents.
-]
+]))
 
-# Charger le modèle Sentence Transformer
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-topic_embeddings = model.encode(cybersecurity_topics)
 
-# Liste des questions générales avec des réponses spécifiques
+
 FAQ_RESPONSES = {
     "comment t'appelles-tu": "Je suis **chatBot**, un assistant spécialisé en cybersécurité.",
-    "pourquoi est-il important de mettre à jour mon routeur": "Mettre à jour votre routeur permet de corriger les vulnérabilités de sécurité, d'améliorer les performances et d'assurer la compatibilité avec les nouveaux appareils.",
-    # ... (autres questions et réponses)
+    "pourquoi est-il important de mettre à jour mon routeur": "Mettre à jour votre routeur corrige les failles de sécurité et améliore les performances.",
 }
 
 
-def is_security_rated(question, threshold=0.5):
-    """Vérifie si une question est liée à la cybersécurité en retournant la meilleure similarité trouvée."""
-    question_embedding = model.encode(question)
-    similarities = util.cos_sim(question_embedding, topic_embeddings)[0]
-    max_similarity = max(similarities)
-    return max_similarity > threshold
+def is_security_related(question):
+    """ Vérifie si la question est liée à la sécurité informatique """
+    question_lower = question.lower()
+    return any(keyword in question_lower for keyword in cybersecurity_topics)
 
 
 def send_message_to_gemini(user_message):
     """Envoie un message à Gemini en utilisant la similarité sémantique."""
-    max_retries = 1
-    retries = 0
-
     if not api_key:
         return "Erreur d'authentification avec l'API Gemini. Clé API manquante."
 
@@ -85,34 +84,33 @@ def send_message_to_gemini(user_message):
         return FAQ_RESPONSES[user_message_lower]
 
     # Vérifier si la question concerne la cybersécurité
-    if not is_security_rated(user_message):
-        logger.info(f"Question non liée à la cybersécurité: {user_message}")
-        return "Je suis un chatbot spécialisé en sécurité informatique. Pose-moi une question en rapport avec ce domaine !"
+    if not is_security_related(user_message):
+        return "Je suis un chatbot spécialisé en sécurité informatique. Pose-moi une question en rapport avec ce domaine ! 😊"
 
-    # Prompt de personnalisation amélioré
     prompt_personnalisation = """
     Tu es un expert en cybersécurité. Réponds de manière technique et détaillée aux questions concernant la sécurité des réseaux, les menaces informatiques et les meilleures pratiques de cybersécurité. 
-    Si la question concerne la sécurité des réseaux Wi-Fi, explique les différentes méthodes de sécurisation, les protocoles de chiffrement et les configurations recommandées.
-    Exemples de questions : "Comment fonctionne le chiffrement asymétrique ?", "Quelles sont les dernières vulnérabilités zero-day ?", "Comment analyser un fichier malware ?"
+    Exemple : "Comment fonctionne le chiffrement asymétrique ?", "Quelles sont les dernières vulnérabilités zero-day ?", "Comment analyser un fichier malware ?"
     """
 
     try:
-        model = genai.GenerativeModel('gemini-1.5-pro')
+        model_gemini = genai.GenerativeModel('gemini-1.5-pro')
         logger.info("Modèle Gemini chargé avec succès.")
     except Exception as e:
         logger.error(f"Erreur lors de l'initialisation du modèle Gemini : {e}")
         return "Impossible de charger le modèle Gemini."
 
+    retries = 0
+    max_retries = 2
+
     while retries < max_retries:
         try:
-            réponse = model.generate_content(prompt_personnalisation + "\n\n" + user_message)
+            réponse = model_gemini.generate_content(prompt_personnalisation + "\n\n" + user_message)
             if réponse and hasattr(réponse, 'text') and réponse.text:
-                reponse_texte = réponse.text.strip()
-                reponse_texte = "\n".join(reponse_texte.split("\n")[:10])  # Garde uniquement les 10 premières lignes
-                return reponse_texte
+                return textwrap.shorten(réponse.text.strip(), width=500, placeholder="...")
             else:
                 return "Le chatbot n'a pas pu générer de réponse."
         except GoogleAPIError as e:
+            logger.error(f"Erreur API Gemini: {e}")
             retries += 1
             time.sleep(1)
         except Exception as e:
