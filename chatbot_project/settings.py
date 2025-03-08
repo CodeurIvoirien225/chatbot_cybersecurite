@@ -34,6 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'chatbot-cybersecurite-2-79ed.onrender.com',
+    'chatbot-cybersecurite-3-mb2g.onrender.com',
     'localhost',
     '127.0.0.1'
 ]
