@@ -42,6 +42,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 /* Conteneur du chatbot en pleine page */
