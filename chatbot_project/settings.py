@@ -32,7 +32,12 @@ SECRET_KEY = 'django-insecure-u$h3j5$0_@r--xig3-g0eb)5srmo=eu#)(8^+*jop%#5#izq$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.onrender.com', 'RENDER_EXTERNAL_HOSTNAME', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    "chatbot-cybersecurite-3-mb2g.onrender.com",  # Ton vrai domaine Render
+    ".onrender.com",  # Pour permettre tous les sous-domaines Render
+    "localhost",
+    "127.0.0.1"
+]
 
 
 # Application definition
