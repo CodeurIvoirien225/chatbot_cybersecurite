@@ -1,35 +1,4 @@
 
-/* 
-
-À l’heure où j’écris ces lignes, une erreur est présente dans la version 
-Sass de Bootstrap 5. Sur le composant   offcanvas, les   z-index  de la classe  
- .offcanvas  et celui de la classe   .modal-backdrop  sont inversés, ce qui cache
-  le contenu de votre carrousel derrière un voile noir en   opacity: 0.5 .
-
-Pour y remédier, cherchez le fichier _offcanvas.scss dans votre dossier Bootstrap,
- puis récupérez le nom de la variable du   z-index  de la classe   .offcanvas. Si ça ne change pas, 
- cette variable devrait être   $zindex-offcanvas. Ajoutez-la dans votre fichier _variables_overrides.scss 
- et donnez-lui une valeur supérieure au   z-index  de la classe  
- .modal-backdrop, soit   1051  si ça n’a pas changé au moment où vous lisez ces lignes.
-
-
-  Solution  : Modifier la variable CSS directement (sans recompiler Bootstrap)
-Si tu ne veux pas modifier les fichiers Sass et recompiler Bootstrap, ajoute ce code dans ton fichier 
-CSS global :
-
-:root {
-  --bs-offcanvas-zindex: 1051;
-}
-Cela modifiera la valeur sans toucher au fichier source.
-et c'est ce que j'ai fait
-
-*/
-/* Définition des variables CSS */
-
-
-:root {
-    --bs-offcanvas-zindex: 1051;
-}  
 
 /* Réinitialisation du body pour occuper tout l'écran */
 body {
@@ -50,9 +19,9 @@ body {
     width: 1300px;
     height:100vh;
     background: white;
-    display: flex;
+    display: flex; /* permet d'aligner facilement les éléments sur le même ligne ou sur la même colone*/
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* met un espace égal entre les éléments */
     border-radius: 0;
     box-shadow: none;
     padding: 20px;
@@ -69,12 +38,12 @@ h2 {
 
 /* Zone de chat en pleine hauteur */
 #chatbox {
-    flex: 1;
-    overflow-y: auto;
+    flex: 1; /* La propriété flex: 1; permet à un élément d'occuper tout l'espace disponible */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale seulement si necessaire*/
     padding: 20px;
     background: #f8f9fa;
     border-radius: 10px;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1); /* "inset"  créer une ombre à l'intérieur d'un élément, au lieu d'une ombre externe. */
     display: flex;
     flex-direction: column;
 }
@@ -85,14 +54,14 @@ h2 {
     border-radius: 10px;
     margin: 5px 0;
     line-height: 1.4;
-    position: relative;
-    animation: slideUp 0.3s ease-in-out;
+    position: relative;   /* position: relative;  permet de modifier la position d'un élément par rapport à sa position normale */
+    animation: slideUp 0.3s ease-in-out; /* Animation du glissement vers le haut */
 }
 
 .user-message {
     background: black;
     color: white;
-    align-self: flex-end;
+    align-self: flex-end; /* Si tu utilises align-self: flex-end; dans un conteneur avec flex-direction: row (qui est la direction par défaut), l'élément sera aligné à droite du conteneur (fin de l'axe horizontal). */
     border-bottom-right-radius: 2px;
 }
 
@@ -115,7 +84,6 @@ input {
     flex: 1;
     padding: 15px;
     border: none;
-    outline: none;
     font-size: 1rem;
 }
 
@@ -137,13 +105,8 @@ button i {
 }
 
 /* Animations */
+/* Animation de l'apparition */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
 }
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
