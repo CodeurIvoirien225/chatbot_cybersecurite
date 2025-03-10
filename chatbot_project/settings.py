@@ -125,11 +125,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "chatbot/static" # Si je développe dans un  environnement de développement :
-]
+STATIC_URL = '/static/'  # URL pour servir les fichiers statiques
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Dossier contenant les fichiers statiques
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier de collecte des fichiers
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
