@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-u$h3j5$0_@r--xig3-g0eb)5srmo=eu#)(8^+*jop%#5#izq$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['https://chatbot-cybersecurite-cfg8.onrender.com', '.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
