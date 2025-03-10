@@ -1,0 +1,112 @@
+
+
+/* Réinitialisation du body pour occuper tout l'écran */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Conteneur du chatbot en pleine page */
+.chat-container {
+    width: 1300px;
+    height:100vh;
+    background: white;
+    display: flex; /* permet d'aligner facilement les éléments sur le même ligne ou sur la même colone*/
+    flex-direction: column;
+    justify-content: space-between; /* met un espace égal entre les éléments */
+    border-radius: 0;
+    box-shadow: none;
+    padding: 20px;
+}
+
+/* Titre centré */
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/* Zone de chat en pleine hauteur */
+#chatbox {
+    flex: 1; /* La propriété flex: 1; permet à un élément d'occuper tout l'espace disponible */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale seulement si necessaire*/
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1); /* "inset"  créer une ombre à l'intérieur d'un élément, au lieu d'une ombre externe. */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Messages utilisateur et chatbot */
+.user-message, .bot-message {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin: 5px 0;
+    line-height: 1.4;
+    position: relative;   /* position: relative;  permet de modifier la position d'un élément par rapport à sa position normale */
+    animation: slideUp 0.3s ease-in-out; /* Animation du glissement vers le haut */
+}
+
+.user-message {
+    background: black;
+    color: white;
+    align-self: flex-end; /* Si tu utilises align-self: flex-end; dans un conteneur avec flex-direction: row (qui est la direction par défaut), l'élément sera aligné à droite du conteneur (fin de l'axe horizontal). */
+    border-bottom-right-radius: 2px;
+}
+
+.bot-message {
+    background: #e9ecef;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+/* Champ d'entrée et bouton */
+.input-group {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    font-size: 1rem;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5294db;
+}
+
+button i {
+    font-size: 1.3rem;
+}
+
+/* Animations */
+/* Animation de l'apparition */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
