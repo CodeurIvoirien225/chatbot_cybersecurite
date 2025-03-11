@@ -130,8 +130,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 STATICFILES_DIRS = [
-    BASE_DIR / "chatbot/static"  # Si je développe dans un  environnement de développement :
+    BASE_DIR / "static" / "chatbot",  # Si je développe dans un  environnement de développement :
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django collectera les fichiers statiques
