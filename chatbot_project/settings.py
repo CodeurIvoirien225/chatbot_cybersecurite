@@ -128,8 +128,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "chatbot/static" # Si je développe dans un  environnement de développement :
+    BASE_DIR / "chatbot/static"  # Si je développe dans un  environnement de développement :
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django collectera les fichiers statiques
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
