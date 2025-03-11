@@ -56,12 +56,14 @@ h2 {
     line-height: 1.4;
     position: relative;   /* position: relative;  permet de modifier la position d'un élément par rapport à sa position normale */
     animation: slideUp 0.3s ease-in-out; /* Animation du glissement vers le haut */
+    animation: fadeIn 0.3s ease-in-out; /* animation du glissement vers le haut */
+
 }
 
 .user-message {
     background: black;
     color: white;
-    align-self: flex-end; /* Si tu utilises align-self: flex-end; dans un conteneur avec flex-direction: row (qui est la direction par défaut), l'élément sera aligné à droite du conteneur (fin de l'axe horizontal). */
+    align-self: flex-end; 
     border-bottom-right-radius: 2px;
 }
 
@@ -84,6 +86,7 @@ input {
     flex: 1;
     padding: 15px;
     border: none;
+    outline: none;
     font-size: 1rem;
 }
 
@@ -110,3 +113,11 @@ button i {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
 }
+
+
+/* Animation du glissement vers le haut */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(1px); }
+    to { opacity: 1; transform: translateY(10); }
+}
+
