@@ -30,7 +30,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 SECRET_KEY = 'django-insecure-u$h3j5$0_@r--xig3-g0eb)5srmo=eu#)(8^+*jop%#5#izq$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #À mettre sur False en production
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://chatbot-cybersecurite-cfg8.onrender.com', 'localhost', '127.0.0.1']
 
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chatbot',
-    ]
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,12 +125,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'  
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Répertoire où Render stocke les fichiers statiques
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static', 'chatbot'),  # Dossier contenant tes fichiers CSS et JS
+    BASE_DIR / "chatbot/static" # Si je développe dans un  environnement de développement :
 ]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
