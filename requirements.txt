@@ -11,6 +11,7 @@ charset-normalizer
 colorama
 distro
 Django
+django-cors-headers
 djangorestframework
 filelock
 flake8
