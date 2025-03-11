@@ -63,7 +63,7 @@ h2 {
 .user-message {
     background: black;
     color: white;
-    align-self: flex-end; /* Si tu utilises align-self: flex-end; dans un conteneur avec flex-direction: row (qui est la direction par défaut), l'élément sera aligné à droite du conteneur (fin de l'axe horizontal). */
+    align-self: flex-end; 
     border-bottom-right-radius: 2px;
 }
 
@@ -117,7 +117,7 @@ button i {
 
 /* Animation du glissement vers le haut */
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(1px); }
     to { opacity: 1; transform: translateY(10); }
 }
 
