@@ -29,8 +29,8 @@ function sendMessage() {
     let loadingId = "loading-" + new Date().getTime(); // ID unique pour le spinner
     displayLoading(loadingId);
 
-    // Envoi du message à l'API Django
-    fetch("http://127.0.0.1:8000/api/chat/", {
+    // Envoi du message à l'API render
+    fetch('https://chatbot-cybersecurite-cfg8.onrender.com/api/chat/', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
