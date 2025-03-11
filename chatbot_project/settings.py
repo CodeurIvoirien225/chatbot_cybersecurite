@@ -34,7 +34,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'chatbot-cybersecurite-cfg8.onrender.com',
-    '127.0.0.1',   # ceci pour le développement local
+    '127.0.0.1',
+    'localhost',
 ]
 
 # Application definition
