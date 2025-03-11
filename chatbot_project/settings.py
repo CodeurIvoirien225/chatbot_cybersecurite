@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Répertoire où Render stocke les fichiers statiques
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'chatbot', 'static'),  # Dossier contenant tes fichiers CSS et JS
+    os.path.join(BASE_DIR, 'static', 'chatbot'),  # Dossier contenant tes fichiers CSS et JS
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
