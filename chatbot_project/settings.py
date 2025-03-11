@@ -30,9 +30,9 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 SECRET_KEY = 'django-insecure-u$h3j5$0_@r--xig3-g0eb)5srmo=eu#)(8^+*jop%#5#izq$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False   #À mettre sur False en production
+DEBUG = False #À mettre sur False en production
 
-ALLOWED_HOSTS = ['https://chatbot-cybersecurite-cfg8.onrender.com', '.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['https://chatbot-cybersecurite-cfg8.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -56,19 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
-
-
-# CORS settings
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = [
-    "https://chatbot-cybersecurite-cfg8.onrender.com",  # Frontend URL
-    "http://127.0.0.1:8000",  # Local development URL
-    "http://localhost:8000",  # Local development URL
-]
-
 
 ROOT_URLCONF = 'chatbot_project.urls'
 
